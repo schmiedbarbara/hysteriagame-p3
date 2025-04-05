@@ -98,6 +98,8 @@ public class VentanaFinal extends JFrame {
 public void reiniciarJuego() {
 	VentanaInicio ventanaInicio = new VentanaInicio();
     ventanaInicio.setVisible(true);
+    this.setVisible(false);
+    
 	
     	for (int i = 0; i < botones.length; i++) {
             botones[i].setBackground(Color.DARK_GRAY);

@@ -24,8 +24,7 @@ public class MainForm {
                 try {
                 	VentanaInicio ventanaInicio = new VentanaInicio();
                     ventanaInicio.setVisible(true);
-                    //MainForm window = new MainForm();
-                    //window.frame.setVisible(true);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -84,9 +83,11 @@ public class MainForm {
                     
                     //Verifica que ganes y dirige a la Ventana Final
                     if (game.ganaste(game.obtenerColores(), 1)) {
+                        frame.setVisible(false);
                     	// Cuando el juego termine, mostrar la ventana final
                     	VentanaFinal ventanaFinal = new VentanaFinal("HAS GANADO EL HYSTERIA GAME!");
                     	ventanaFinal.setVisible(true);
+                        
                     }
                 }
             });

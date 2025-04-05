@@ -74,7 +74,7 @@ private void iniciarJuego() {
     //Cierra ventana de inicio
     this.setVisible(false);
     MainForm juego = new MainForm();
-    juego.inicializar();
+    //juego.inicializar();
 }
 
 
