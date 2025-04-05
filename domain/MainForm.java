@@ -83,7 +83,7 @@ public class MainForm {
                     
                     
                     //Verifica que ganes y dirige a la Ventana Final
-                    if (game.ganaste(game.obtenerColores(), 1)) {
+                    if (game.ganaste(game.obtenerColores(), 5)) {
                     	// Cuando el juego termine, mostrar la ventana final
                     	VentanaFinal ventanaFinal = new VentanaFinal("HAS GANADO EL HYSTERIA GAME!");
                     	ventanaFinal.setVisible(true);
