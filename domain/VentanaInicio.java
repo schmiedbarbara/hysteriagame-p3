@@ -17,32 +17,32 @@ public class VentanaInicio extends JFrame {
 		//Obtenemos imagen
 		String workingDir = System.getProperty("user.dir");
 		String imagePath = workingDir + File.separator + "domain" + File.separator + "ventanaInicio.jpg";
-        ImageIcon icon = new ImageIcon(imagePath);
+        	ImageIcon icon = new ImageIcon(imagePath);
         
         
         //Posicionamiento de la imagen en el JLabel
-        JLabel backgroundLabel = new JLabel(icon);
-        backgroundLabel.setLayout(new GridBagLayout());
-        JPanel contentPanel = new JPanel(new GridBagLayout());
-        contentPanel.setOpaque(false);
+        	JLabel backgroundLabel = new JLabel(icon);
+       	 	backgroundLabel.setLayout(new GridBagLayout());
+        	JPanel contentPanel = new JPanel(new GridBagLayout());
+        	contentPanel.setOpaque(false);
         
         //Alineacion de los elementos
-        GridBagConstraints gbc = new GridBagConstraints();
+        	GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridx = 0;
-        gbc.anchor = GridBagConstraints.CENTER;
+        	gbc.gridx = 0;
+        	gbc.anchor = GridBagConstraints.CENTER;
         
         
        
         //Configuracion Texto
-        JLabel titulo = new JLabel("HYSTERIA GAME");
-        titulo.setFont(new Font("Arial", Font.BOLD, 24)); // Ajusta el tamaño de la fuente
-        titulo.setForeground(Color.WHITE); // Color de la letra para contraste
-        titulo.setPreferredSize(new Dimension(480, 60));
-        titulo.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo.setVerticalAlignment(SwingConstants.CENTER);
-        titulo.setOpaque(true);
-        titulo.setBackground(new Color(0, 0, 0, 150)); // Fondo semi-transparente para mejor visibilidad
+        	JLabel titulo = new JLabel("HYSTERIA GAME");
+       	 	titulo.setFont(new Font("Arial", Font.BOLD, 24)); // Ajusta el tamaño de la fuente
+        	titulo.setForeground(Color.WHITE); // Color de la letra para contraste
+        	titulo.setPreferredSize(new Dimension(480, 60));
+        	titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        	titulo.setVerticalAlignment(SwingConstants.CENTER);
+        	titulo.setOpaque(true);
+        	titulo.setBackground(new Color(0, 0, 0, 150)); // Fondo semi-transparente para mejor visibilidad
 
         gbc.gridy = 0; //posicion 0
         contentPanel.add(titulo, gbc);
@@ -74,7 +74,7 @@ private void iniciarJuego() {
     //Cierra ventana de inicio
     this.setVisible(false);
     MainForm juego = new MainForm();
-    //juego.inicializar();
+    
 }
 
 
