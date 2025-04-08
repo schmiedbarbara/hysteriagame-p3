@@ -4,16 +4,19 @@ public class HysteriaGame {
 	    private int size;
 	    private int[] colores;
 	    private Tablero board;
+	    private int turnos;
+	    private int record;
 
 	    public HysteriaGame() {
 	        this.size = 5; 
 	        this.colores = new int[size * size]; 
 	        this.board = new Tablero(size * size);
+	        this.turnos = 0;
+	        this.record = Integer.MAX_VALUE; // Máximo posible para que el primer récord lo sobrepase
 	        conectarNodos(board, size);
 	    }  
     
 	    private static void conectarNodos(Tablero board, int size) {
-		
 	    	for (int i = 0; i < size; i++) {
 	    		for (int j = 0; j < size; j++) {
 	    			int nodoActual = i * size + j;
@@ -48,7 +51,22 @@ public class HysteriaGame {
 	    }
 	    
 	    public void cambiarColor(int nodo) { // esto lo hicimos para poder llamarlo desde el MainForm
+	    	turnos++;
 	    	cambiarColor(nodo, board, colores);
+	    }
+	    
+	    public int getTurnos() {
+	        return turnos;
+	    }
+	    
+	    public int getRecord() {
+	        return record;
+	    }
+	    
+	    public void actualizarRecord() {
+	        if (turnos < record) {
+	            record = turnos;
+	        }
 	    }
 	    
 	    public int darColor(int nodo) { // esto lo hicimos para poder llamarlo desde el MainForm
@@ -62,6 +80,7 @@ public class HysteriaGame {
 	    public int[] obtenerColores() {
 	    	return this.colores;
 	    }
+
 	
 	    public static boolean ganaste(int[] colores, int size) {
 		
@@ -71,5 +90,9 @@ public class HysteriaGame {
 	    	}
 	    	return true;
 	    }
+
+
+		
 	
 }
+
