@@ -16,6 +16,8 @@ public class MainForm {
     private JFrame frame;
     private HysteriaGame game;
     private JButton[] botones;
+    private JLabel turnosLabel;
+    private JLabel recordLabel;
     
     
     public static void main(String[] args) {
@@ -24,7 +26,7 @@ public class MainForm {
                 try {
                 	VentanaInicio ventanaInicio = new VentanaInicio();
                     ventanaInicio.setVisible(true);
-
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -38,6 +40,8 @@ public class MainForm {
     }
 
     public void inicializar() {
+
+        //Inicialización de Ventana Principal
         frame = new JFrame();
         frame.setTitle("Hysteria Game");
         frame.setBounds(100, 100, 600, 600);
@@ -45,17 +49,22 @@ public class MainForm {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
 
+        //Inicialización de Barra 
         JToolBar barra = new JToolBar();
+        turnosLabel = new JLabel("Turnos: 0");
+        recordLabel = new JLabel("Récord: -");
+        barra.add(turnosLabel);
+        barra.add(recordLabel);
         frame.getContentPane().add(barra, BorderLayout.NORTH);
 
 
-
+        //Inicialización de Panel
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5, 5, 1, 1));
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         
         
-
+        //Inicialización de botones de la Grilla
         botones = new JButton[25];
         for (int i = 0; i < 25; i++) {
             JButton boton = new JButton();
@@ -65,6 +74,7 @@ public class MainForm {
             boton.setFocusPainted(false);
             final int nodo = i;
 
+            //Capta cuando un botón es presionado
             boton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     game.cambiarColor(nodo);
@@ -76,38 +86,43 @@ public class MainForm {
                     for (int vecino : vecinos) {
                         actualizarBoton(botones[vecino], vecino);
                     }
+                    actualizarTurnos();
                     
                     frame.revalidate();
                     frame.repaint();
-                    
-                    
+         
                     //Verifica que ganes y dirige a la Ventana Final
-                    if (game.ganaste(game.obtenerColores(), 5)) {
-                        frame.setVisible(false);
-                    	// Cuando el juego termine, mostrar la ventana final
-                    	VentanaFinal ventanaFinal = new VentanaFinal("HAS GANADO EL HYSTERIA GAME!");
-                    	ventanaFinal.setVisible(true);
-                        
-                    }
+                    if (game.ganaste(game.obtenerColores(), 1)) {
+                        game.actualizarRecord();
+                        VentanaFinal ventanaFinal = new VentanaFinal(
+                        "<html><div style='text-align: center;'>★ GANASTE<br>HYSTERIA GAME ★</div></html>",
+                        "¡Has utilizado " + (game.getTurnos()) + " movimientos para lograrlo!"
+                        );
+                        ventanaFinal.setVisible(true);
+                        frame.setVisible(false); 
+                        ventanaFinal.setVisible(true);
+                    } 
                 }
             });
-
             botones[i] = boton;
-            panel.add(boton);
-            
+            panel.add(boton);   
         }
-
         frame.setVisible(true);
     }
 
+    private void actualizarTurnos() {
+        turnosLabel.setText("Turnos: " + game.getTurnos());
+        recordLabel.setText("Récord: " + (game.getRecord() == Integer.MAX_VALUE ? "-" : game.getRecord()));
+    }
+
     public void reiniciarJuego() {
-    	game = new HysteriaGame();
-    	for (int i = 0; i < botones.length; i++) {
+        game = new HysteriaGame();
+        for (int i = 0; i < botones.length; i++) {
             botones[i].setBackground(Color.DARK_GRAY);
         }
+        actualizarTurnos();
     }
     
-   
     
     private void actualizarBoton(JButton boton, int nodo) {
         int colorId = game.darColor(nodo);
@@ -138,4 +153,3 @@ public class MainForm {
 
         boton.setBackground(color);
     } }
-
