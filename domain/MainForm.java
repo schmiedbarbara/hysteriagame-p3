@@ -93,7 +93,7 @@ public class MainForm {
                     frame.repaint();
          
                     //Verifica que ganes y dirige a la Ventana Final
-                    if (game.ganaste(game.obtenerColores(), 1)) {
+                    if (game.ganaste(game.obtenerColores(), 5)) {
                         game.actualizarRecord();
                         VentanaFinal ventanaFinal = new VentanaFinal(
                         "<html><div style='text-align: center;'>★ GANASTE<br>HYSTERIA GAME ★</div></html>",
